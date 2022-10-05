@@ -27,8 +27,11 @@ public class TestBanking {
 			cliente2.setAccount(new Account(324.88));
 			
 			System.out.println("Customer ["+ cliente2.getLastName()+","+cliente2.getFirstName()+"]"+ "tiene un saldo de "+ cliente2.getAccount().getBalance());
+		
 		}catch(RuntimeException e) {
+			
 			System.out.println("Se puede depositar " + e.getMessage());
+		
 		}
 		
 		
