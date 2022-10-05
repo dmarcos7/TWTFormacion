@@ -17,7 +17,7 @@ public class Account {
 	
 	public boolean withdraw (double amt) {
 		boolean exito = false;
-		if(amt<=balance) {
+		if(amt<=balance && amt>0) {
 			balance = balance-amt;
 			exito = true;
 		}
