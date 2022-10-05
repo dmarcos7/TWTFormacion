@@ -19,6 +19,9 @@ public class Customer {
 	}
 
 	public void setFirstName(String firstName) {
+		if(firstName==null || firstName.length()<2) {
+			throw new RuntimeException("Introduce un nombre válido");
+		}
 		this.firstName = firstName;
 	}
 
@@ -27,6 +30,9 @@ public class Customer {
 	}
 
 	public void setLastName(String lastName) {
+		if(lastName==null || lastName.length()<2) {
+			throw new RuntimeException("Introduce un apellido válido");
+		}
 		this.lastName = lastName;
 	}
 
