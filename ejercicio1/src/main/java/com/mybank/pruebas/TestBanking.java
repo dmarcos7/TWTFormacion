@@ -22,7 +22,10 @@ public class TestBanking {
 		
 		System.out.println("Sacar 400: "+ cliente.getAccount().withdraw(400));
 		
-		System.out.println("Customer ["+ cliente.getLastName()+","+cliente.getFirstName()+"]"+ "tiene un saldo de "+ cliente.getAccount().getBalance());
+		Customer cliente2 = new Customer("Jane", "Smith");
+		cliente2.setAccount(new Account(324.88));
+		
+		System.out.println("Customer ["+ cliente2.getLastName()+","+cliente2.getFirstName()+"]"+ "tiene un saldo de "+ cliente2.getAccount().getBalance());
 		
 //		System.out.printf("Sacar 150.00: %b", cliente.getAccount().withdraw(150));
 //		
