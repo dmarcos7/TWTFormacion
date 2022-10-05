@@ -18,7 +18,7 @@ public class TestBanking {
 		
 		System.out.println("Ingresar 22.50: "+ cliente.getAccount().deposit(22.50));
 		
-		System.out.println("Sacar 47.62: "+ cliente.getAccount().withdraw(47.62));
+		System.out.println("Sacar 47.62: "+ cliente.getAccount().withdraw(47.62)); 
 		
 		System.out.println("Sacar 400: "+ cliente.getAccount().withdraw(400));
 		
