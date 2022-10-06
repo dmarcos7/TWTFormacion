@@ -33,6 +33,9 @@ public class Bank {
 	}
 	
 	public Customer getCustomer(int index) {
+		if(this.customers[index]==null) {
+			throw new RuntimeException("El cliente no existe");
+		}
 		return this.customers[index];
 	}
 
