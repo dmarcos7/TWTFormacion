@@ -16,6 +16,10 @@ public class Bank {
 	
 	public void addCustomer(String f, String l) {
 		
+		if(f== null || l == null) {
+			throw new RuntimeException("Se deben introducir los datos del cliente");
+		}
+		
 		Customer c = new Customer(f, l);
 		Account acc = new Account(0.0);
 		c.setAccount(acc);
