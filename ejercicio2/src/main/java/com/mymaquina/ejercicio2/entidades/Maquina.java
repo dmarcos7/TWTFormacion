@@ -26,9 +26,16 @@ public class Maquina {
 	
 	public void reponer(Refresco refresco) {
 		//TODO implementar el metodo
+		for (int i = 0; i<refrescos.size();i++) {
+			Refresco refresco1 = refrescos.get(i);
+			if(refresco1.getId() == refresco.getId()) {
+				
+				
+			}
+		}
 	}
 	
-	public Refresco vender(int numero) {
+	public Refresco vender(int numero, double cantidadIntroducida) {
 		//TODO implementar el método
 		return null;
 	}
