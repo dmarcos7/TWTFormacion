@@ -80,6 +80,10 @@ public class Refresco {
 	
 	
 	
+	public void anadirRefresco() {
+		//TODO implementar el añadir el refresco
+	}
+	
 	
 	
 
