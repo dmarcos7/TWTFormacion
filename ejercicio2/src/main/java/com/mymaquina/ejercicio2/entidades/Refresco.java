@@ -71,18 +71,38 @@ public class Refresco {
 		this.stock = stock;
 	}
 	
+	
 	//métodos
 	
 	public void incrementarStock() {
-		
+		this.stock++;
 	}
 
 	
-	
-	
-	public void anadirRefresco() {
-		//TODO implementar el añadir el refresco
+	public boolean agotado() {
+		boolean agotado = false;
+		if(stock<= 0) {
+			agotado = true;
+		}
+		
+		if(this.agotado!=agotado) {
+			setAgotado(agotado);
+		}
+		
+		return agotado;
 	}
+	
+	public void decrementarStock() {
+		this.stock--;
+	}
+
+	@Override
+	public String toString() {
+		return "Refresco [id=" + id + ", sabor=" + sabor + ", cl=" + cl + ", precio=" + precio + ", agotado=" + agotado
+				+ ", stock=" + stock + "]";
+	}
+	
+	
 	
 	
 	

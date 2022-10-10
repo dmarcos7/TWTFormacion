@@ -37,4 +37,11 @@ public class Venta {
 		this.dinero = dinero;
 	}
 
+	@Override
+	public String toString() {
+		return "Venta [id=" + id + ", refresco=" + refresco + ", dinero=" + dinero + "]";
+	}
+	
+	
+
 }
