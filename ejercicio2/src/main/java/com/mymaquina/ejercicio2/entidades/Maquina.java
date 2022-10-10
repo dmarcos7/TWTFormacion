@@ -24,14 +24,20 @@ public class Maquina {
 	
 	//metodos
 	
-	//de momento incrementa el stock de uno en uno 
-	public void reponer(Refresco refresco) {
-		//TODO cambiar para que se reponga mas de un refresco a la vez
+	//de momento incrementa el stock en funcion de la cantidad que se introduzca
+	public void reponer(Refresco refresco, int cantidad) {
+		
 		for (int i = 0; i<refrescos.size();i++) {
 			Refresco refresco1 = refrescos.get(i);
 			if(refresco1.getId() == refresco.getId()) {
-				refrescos.get(i).incrementarStock();
+				refrescos.get(i).incrementarStock(cantidad);
 			}
+		}
+	}
+	
+	public void introducirNumeroDeRefrescos() {
+		for(int i=0; i< this.refrescos.size(); i++) {
+			this.numRefrescosTotal = this.numRefrescosTotal+this.refrescos.get(i).getStock();
 		}
 	}
 	
@@ -105,7 +111,14 @@ public class Maquina {
 	
 	public double devolverCambio(double cantidad, Refresco refresco) {
 		double cambio = cantidad - refresco.getPrecio();
+		this.actualizarCambio(refresco, cantidad);
 		return cambio;
+	}
+	
+	private void actualizarCambio(Refresco refresco, double cantidadIntroducida) {
+		if(cantidadIntroducida - refresco.getPrecio()==0) {
+			this.cambios =this.cambios + cantidadIntroducida;
+		}
 	}
 	
 	private Refresco devolverRefresco(int id) {
@@ -121,6 +134,17 @@ public class Maquina {
 			}
 		}
 		return refresco;
+	}
+	
+	public double conversionDeMonedas(double moneda, TipoMoneda tipo) {
+		
+		double moneda2 = 0.0;
+		
+		if(tipo.equals(TipoMoneda.EURO)) {
+			moneda2 = moneda * 100;
+		}
+		
+		return moneda2; 
 	}
 	
 	

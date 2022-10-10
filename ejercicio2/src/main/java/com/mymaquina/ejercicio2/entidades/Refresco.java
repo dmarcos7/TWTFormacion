@@ -74,8 +74,8 @@ public class Refresco {
 	
 	//métodos
 	
-	public void incrementarStock() {
-		this.stock++;
+	public void incrementarStock(int cantidad) {
+		this.stock = this.stock+cantidad;
 	}
 
 	
