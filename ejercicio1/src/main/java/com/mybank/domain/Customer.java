@@ -6,12 +6,15 @@ public class Customer {
 	
 	private String firstName;
 	private String lastName;
-	private Account account;
+	private Account[] accounts;
+	private int numberOfAccounts;
 	
 	//constructores
 	public Customer(String f, String l) {
 		this.firstName = f;
 		this.lastName = l;
+		this.accounts = new Account[10];
+		this.numberOfAccounts = 0;
 	}
 
 	public String getFirstName() {
@@ -36,12 +39,24 @@ public class Customer {
 		this.lastName = lastName;
 	}
 
-	public Account getAccount() {
-		return account;
+	public Account getAccount(int id) {
+		
+		return this.accounts[id];
 	}
 
-	public void setAccount(Account account) {
-		this.account = account;
+	public void addAccount(Account cuenta) {
+		
+			accounts[this.numberOfAccounts] = cuenta;
+		
+			accounts[this.numberOfAccounts] = cuenta;
+			
+		
+		this.numberOfAccounts++;
+		
+	}
+	
+	public int getNumberOfAccounts() {
+		return numberOfAccounts;
 	}
 	
 	

@@ -22,7 +22,7 @@ public class Bank {
 		
 		Customer c = new Customer(f, l);
 		Account acc = new Account(0.0);
-		c.setAccount(acc);
+		c.addAccount(acc);
 		customers[this.numberOfCustomers] = c;
 		this.numberOfCustomers++;
 		
