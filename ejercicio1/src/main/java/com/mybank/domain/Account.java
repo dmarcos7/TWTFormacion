@@ -1,12 +1,12 @@
 package com.mybank.domain;
 
 public class Account {
-	private double balance;
+	protected double balance;
 	
-	public Account(double initBalance) {
+	protected Account(double initBalance) {
 		this.balance = initBalance;
 	}
-	
+
 	public boolean deposit(double amt) {
 		if(amt<0) {
 			throw new RuntimeException ("No se puede introducir una cantidad negativa");

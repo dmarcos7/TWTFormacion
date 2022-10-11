@@ -1,7 +1,9 @@
 package com.mybank.pruebas;
 
-import com.mybank.domain.Account;
+
+import com.mybank.domain.CheckingAccount;
 import com.mybank.domain.Customer;
+import com.mybank.domain.SavingsAccount;
 
 public class TestBanking {
 	public static void main(String[] args) {
@@ -11,7 +13,7 @@ public class TestBanking {
 			Customer cliente = new Customer("Luis","Ramos");
 			
 			System.out.println("Creando su cuenta bancario con saldo 500.00.");
-			Account cuenta = new Account(500.00);
+			SavingsAccount cuenta = new SavingsAccount(500.00, 0.1);
 			
 			cliente.setAccount(cuenta);
 		
@@ -24,7 +26,8 @@ public class TestBanking {
 			System.out.println("Sacar 400: "+ cliente.getAccount().withdraw(400));
 			
 			Customer cliente2 = new Customer("Jane", "Smith");
-			cliente2.setAccount(new Account(324.88));
+			CheckingAccount cuenta2 = new CheckingAccount(324.88); 
+			cliente2.setAccount(cuenta2);
 			
 			System.out.println("Customer ["+ cliente2.getLastName()+","+cliente2.getFirstName()+"]"+ "tiene un saldo de "+ cliente2.getAccount().getBalance());
 		
