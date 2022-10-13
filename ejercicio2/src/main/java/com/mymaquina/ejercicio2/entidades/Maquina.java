@@ -7,7 +7,7 @@ public class Maquina {
 	//atributos
 	private ArrayList<Refresco> refrescos;
 	private ArrayList<Venta> ventas;
-	private int numRefrescosTotal;
+	private int numRefrescosTotal; // entiendo el numero de tipos de refresco
 	private double cambios;
 	private static Maquina maquina;
 	
@@ -51,22 +51,53 @@ public class Maquina {
 	}
 	
 	public Refresco vender(int numero, double cantidadIntroducida) {
-		Refresco refresco = this.devolverRefresco(numero);
-		if(refresco!=null && refresco.getStock()>0) {
-			if(cantidadIntroducida>= refresco.getPrecio() && this.hayCambio(refresco, cantidadIntroducida)) {
-				this.refrescos.get(refresco.getId()).decrementarStock();
-				this.actualizarInforme(refresco);
-			}else {
-				throw new RuntimeException("No hay cambio");
-			}
+		
+		Refresco refresco = this.buscarRefresco(numero);
+		double cantidad = this.conversionACentimos(cantidadIntroducida);
+		if(comprobarTodoOK(refresco, cantidad)) {
 			
-		}else {
-			throw new RuntimeException("No existe el refresco o no quedan existencias");
+			this.refrescos.get(refresco.getId()).decrementarStock();
+			this.actualizarInforme(refresco);
+			System.out.println("Devolviendo cambio: "+this.devolverCambio(cantidad, refresco));
 		}
 		
 		return refresco;
 	}
 	
+	private boolean comprobarTodoOK(Refresco refresco, double cantidadIntroducida) {
+		if(this.existeRefresco(refresco) && this.hayStock(refresco) 
+				&& this.dineroSuficiente(refresco, cantidadIntroducida) && this.hayCambio(refresco, cantidadIntroducida)){
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
+	private boolean existeRefresco(Refresco refresco) {
+		if(refresco!=null) {
+			return true;
+		}else {
+			throw new RuntimeException("No existe el refresco seleccionado");
+		}
+	}
+	
+	private boolean hayStock(Refresco refresco) {
+		if(refresco.getStock()>0) {
+			return true;
+		}else {
+			throw new RuntimeException("No quedan existencias del producto elegido, "
+					+ "por favor elija otro o espere a que lo repongan");
+		}
+	}
+	
+	private boolean dineroSuficiente(Refresco refresco, double cantidadIntroducida) {
+		if(cantidadIntroducida>= refresco.getPrecio()) {
+			return true;
+		}else {
+			throw new RuntimeException("Dinero insuficiente, introduzca hasta llegar al valor del producto");
+		}
+	}
+		
 	private void actualizarInforme(Refresco refresco) {
 		Venta venta = null;
 		if(this.ventas.size()==0) {
@@ -86,7 +117,7 @@ public class Maquina {
 		}
 	}
 	
-	public String anadirRefresco(Refresco refresco) {
+	public void anadirRefresco(Refresco refresco) {
 		int i = 0;
 		boolean encontrado = false;
 		while(i<refrescos.size() && !encontrado) {
@@ -98,29 +129,34 @@ public class Maquina {
 			}
 		}
 		if(encontrado) {
-			return "El refresco que quieres añadir ya existe";
+			System.out.println("El refresco que quieres añadir ya existe"); 
 		}else {
 			refrescos.add(refresco);
-			return "Refresco añadido";
+			this.numRefrescosTotal++;
+			System.out.println("Refresco añadido"); 
 		}
 		
 		
 	}
 	
 	private boolean hayCambio(Refresco refresco, double cantidad) {
-		boolean cambio = false;
 		double precio = cantidad - refresco.getPrecio();
 		if(this.cambios>=precio) {
-			cambio = true;
+			return true;
+		}else {
+			throw new RuntimeException("No hay cambio, introduzca la cantidad justa");
 		}
 		
-		return cambio;
+		
 		
 	}
 	
-	public double devolverCambio(double cantidad, Refresco refresco) {
+	private double devolverCambio(double cantidad, Refresco refresco) {
 		double cambio = cantidad - refresco.getPrecio();
-		this.actualizarCambio(refresco, cantidad);
+		if(cambio>0) {
+			this.actualizarCambio(refresco, cantidad);
+		}
+		
 		return cambio;
 	}
 	
@@ -130,7 +166,8 @@ public class Maquina {
 		}
 	}
 	
-	private Refresco devolverRefresco(int id) {
+	
+	private Refresco buscarRefresco(int id) {
 		int i = 0;
 		boolean encontrado = false;
 		Refresco refresco = null;
@@ -145,15 +182,14 @@ public class Maquina {
 		return refresco;
 	}
 	
-	public double conversionDeMonedas(double moneda, TipoMoneda tipo) {
+	private double conversionACentimos(double moneda) {
 		
-		double moneda2 = 0.0;
-		
-		if(tipo.equals(TipoMoneda.EURO)) {
-			moneda2 = moneda * 100;
-		}
-		
-		return moneda2; 
+		return moneda*100; 
+	}
+	
+	//esto por si hay que devolver en Euros
+	private double conversionAEuros(double moneda) {
+		return moneda/100;
 	}
 	
 	

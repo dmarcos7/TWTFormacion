@@ -21,7 +21,7 @@ public class PruebasMaquina {
 			maquina.reponer(r, 20);
 			
 			// se sustituirá por un método de meter monedas
-			maquina.vender(0, 80);
+			maquina.vender(0, 0.80);
 			
 			maquina.mostrarInforme();
 			
