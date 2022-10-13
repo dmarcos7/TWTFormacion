@@ -10,6 +10,7 @@ public class Venta {
 		super();
 		this.id = id;
 		this.refresco = refresco;
+		this.dinero = dinero;
 	}
 	
 	public int getId() {

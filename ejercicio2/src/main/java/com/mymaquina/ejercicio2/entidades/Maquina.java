@@ -9,17 +9,26 @@ public class Maquina {
 	private ArrayList<Venta> ventas;
 	private int numRefrescosTotal;
 	private double cambios;
+	private static Maquina maquina;
 	
 	
 	
-	//constructor
+	//constructor lo pongo privado para crear un patron singleton de esta forma no se puede instanciar mas de una vez la 
+	//misma máquina
 	
-	public Maquina(double cambios) {
+	private Maquina(double cambios) {
 		super();
 		this.refrescos = new ArrayList<Refresco>();
 		this.ventas = new ArrayList<Venta>();
 		this.numRefrescosTotal = 0;
 		this.cambios = cambios;
+	}
+	
+	public static Maquina getMaquina() {
+		if(maquina == null) {
+			maquina = new Maquina(50000);
+		}
+		return maquina;
 	}
 	
 	//metodos
@@ -73,7 +82,7 @@ public class Maquina {
 	
 	public void mostrarInforme() {
 		for(int i=0; i<this.ventas.size(); i++) {
-			this.ventas.get(i).toString();
+			System.out.println(this.ventas.get(i).toString()); 
 		}
 	}
 	
