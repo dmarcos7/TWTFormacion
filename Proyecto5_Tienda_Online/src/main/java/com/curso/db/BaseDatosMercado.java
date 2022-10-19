@@ -16,7 +16,7 @@ public class BaseDatosMercado {
 	// iniciar el static tablaProducto
 	static {
 		tablaProducto = new TreeMap<Integer,Producto>();
-		tablaProducto.put(1, new Producto(1, "Libro Recesta", 30.0));
+		tablaProducto.put(1, new Producto(1, "Libro Recetas", 30.0));
 		tablaProducto.put(2, new Producto(2, "Jarrón Chino", 340.0));
 		tablaProducto.put(3, new Producto(3, "Lápiz", 3.0));
 		

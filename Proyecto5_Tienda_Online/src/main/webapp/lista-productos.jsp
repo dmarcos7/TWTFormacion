@@ -16,33 +16,86 @@
 <title>lista</title>
 </head>
 <body>
-
-	<h1>Tienda Online</h1>
-	<h4>Lista de un productos</h4>
-
+	<nav class="navbar navbar-expand-lg bg-dark">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="login.jsp" style="color: white">Tienda
+				Online ${applicationScope.tituloTienda}</a>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarNav"
+				aria-controls="navbarNav" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav">
+					<li class="nav-item"><a class="nav-link active"
+						aria-current="page" href="index.jsp" style="color: white">Home</a></li>
+					<li class="nav-item"><a class="nav-link" href="listaProductos"
+						style="color: white">Listado de Productos</a></li>
+					<c:if test="${sessionScope.usuario.rol == 'admin'}">
+						<li class="nav-item"><a class="nav-link"
+							href="alta-producto.jsp" style="color: white">Alta de
+								Producto</a></li>
+					</c:if>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<h2>Lista de un productos</h2>
+	<div class="border border-warning">${requestScope.mensaje}</div>
 
 	<%
 
 	%>
-
-	<ul>
+	<div class=row>
 		<c:forEach var="producto" items="${requestScope.lista}">
-			
-				<div class="col">
-					<div class="card" style="width: 18rem;">
 
-						<div class="card-body">
-							<div class="bg-secondary text-white">
-								<h5 class="card-title">${producto.idProducto}-${producto.descripcion}</h5>
-							</div>
+			<div class="col-4">
+				<div class="card" style="width: 18rem;">
 
-							<p class="card-text">${producto.precio}€</p>
+					<div class="card-body">
+						<div class="bg-secondary text-white">
+							<h5 class="card-title bg-secondary text-white">${producto.idProducto}-${producto.descripcion}</h5>
 						</div>
+						<p class="card-text">Stock: ${producto.stock}</p>
+						<p>Precio: ${producto.precio}€</p>
+						<a href="comprar?idProducto=${producto.idProducto}">Comprar 1
+							unidad</a>
 					</div>
 				</div>
-			
+			</div>
+
 		</c:forEach>
-	</ul>
+	</div>
+
+	<hr>
+
+	<form class="row row-cols-sm-auto" action="comprar" method="get">
+
+
+
+		<div class="col-4">
+			<label class="" for="producto">Producto</label> <select
+				class="form-select" id="producto" name="idProducto">
+				<c:forEach var="producto" items="${requestScope.lista}">
+					<option value="${producto.idProducto}">${producto.descripcion}</option>
+				</c:forEach>
+			</select>
+		</div>
+
+		<div class="col-4">
+			<label class="" for="cantidad">Cantidad:</label> <input type="number"
+				class="form-control" id="cantidad" name="cantidad">
+
+		</div>
+
+		<div class="col-4">
+			<div></div>
+			<button type="submit" class="btn btn-primary">Comprar</button>
+		</div>
+	</form>
+
+
 
 
 
