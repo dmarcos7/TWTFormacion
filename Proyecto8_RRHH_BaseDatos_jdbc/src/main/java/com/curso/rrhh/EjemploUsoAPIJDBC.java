@@ -47,7 +47,7 @@ public class EjemploUsoAPIJDBC {
 			
 			//Insertar un pais
 			String sentenciaInsert = "INSERT INTO HR.COUNTRIES"
-					+ "VALUES ('XX', 'PAISXX',4)";
+					+ " VALUES ('XX', 'PAISXX',4)";
 			int regAfectado = st.executeUpdate(sentenciaInsert);
 			System.out.printf("insertó %d registros",regAfectado);
 		}catch(SQLException e) {
