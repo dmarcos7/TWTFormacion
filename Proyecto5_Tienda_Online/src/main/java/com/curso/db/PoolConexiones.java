@@ -29,8 +29,8 @@ public final class PoolConexiones {
 	
 	public Connection getConexion () {
 		String url = "jdbc:oracle:thin:@localhost:49161:xe";
-		String usr = "system";
-		String clave = "oracle";
+		String usr = "HR";
+		String clave = "hr";
 		Connection con;
 		try {
 			con = DriverManager.getConnection(url, usr, clave);

@@ -34,7 +34,10 @@ public class ProductoDataBaseDAO implements GenericDAO<Producto> {
 				if(entidad.getDescripcion().equals(rs.getString("DESCRIPCION"))) {
 					nombreIgual = true;
 				}else {
-					ultimoId = rs.getInt("ID_PRODUCTO");	
+					if(ultimoId<rs.getInt("ID_PRODUCTO")) {
+						ultimoId = rs.getInt("ID_PRODUCTO");	
+					}
+					
 				}
 				
 			}
@@ -58,6 +61,7 @@ public class ProductoDataBaseDAO implements GenericDAO<Producto> {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			throw new RuntimeException("No se pudo crear el producto "+e.getMessage(), e);
 		}
 		
 	}
@@ -65,7 +69,7 @@ public class ProductoDataBaseDAO implements GenericDAO<Producto> {
 	@Override
 	public List<Producto> getAll() {
 		ArrayList<Producto> productos = new ArrayList<>();
-		String consulta = "SELECT * FROM HR.PRODUCTOS";
+		String consulta = "SELECT * FROM HR.PRODUCTOS ORDER BY ID_PRODUCTO";
 		try {
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(consulta);
