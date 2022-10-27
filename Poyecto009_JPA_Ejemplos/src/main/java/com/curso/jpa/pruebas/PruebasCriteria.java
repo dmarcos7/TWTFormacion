@@ -54,6 +54,9 @@ public class PruebasCriteria {
 			cq.where(condicionFinal);
 		}
 		
+		//ORDER BY
+		cq.orderBy(cb.desc(from.get("nombreDepartamento")));
+		
 
 		Query qCriteria = em.createQuery(cq);
 		List<Departamento> listaDepartamentos = qCriteria.getResultList();
