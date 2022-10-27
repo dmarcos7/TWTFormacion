@@ -32,7 +32,8 @@
 		<class>com.curso.jpa.entidades.Customer</class>
 		<class>com.curso.jpa.entidades.Record</class>
 		<class>com.curso.jpa.entidades.Orders</class>
-		
+		<class>com.curso.jpa.entidades.Departamento</class>
+		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver" />
 			<property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:49161:xe" />

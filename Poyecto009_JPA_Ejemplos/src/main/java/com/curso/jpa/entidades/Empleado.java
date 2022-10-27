@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -55,9 +57,12 @@ public class Empleado implements Serializable {
 	private Double comision;
 	@Column(name = "MANAGER_ID")
 	private Long idManager;
-	@Column(name = "DEPARTMENT_ID")
-	private Integer idDepartamento;
+	
+	@ManyToOne
+	@JoinColumn(name = "DEPARTMENT_ID")
+	private Departamento departamento;
 
+	
 	public Empleado() {
 		super();
 	}
@@ -147,15 +152,15 @@ public class Empleado implements Serializable {
 		this.idManager = idManager;
 	}
 
-	public Integer getIdDepartamento() {
-		return idDepartamento;
+
+
+	public Departamento getDepartamento() {
+		return departamento;
 	}
 
-	public void setIdDepartamento(Integer idDepartamento) {
-		this.idDepartamento = idDepartamento;
+	public void setDepartamento(Departamento departamento) {
+		this.departamento = departamento;
 	}
-
-	
 
 	@Override
 	public int hashCode() {
@@ -181,6 +186,15 @@ public class Empleado implements Serializable {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Empleado [id=" + id + ", nombre=" + nombre + ", apellidos=" + apellidos + ", email=" + email
+				+ ", telefono=" + telefono + ", fechaContratacion=" + fechaContratacion + ", idTrabajo=" + idTrabajo
+				+ ", salario=" + salario + ", comision=" + comision + ", idManager=" + idManager + "]";
+	}
+	
+	
 
 }
 
