@@ -61,6 +61,9 @@
 						<p>Precio: ${producto.precio}€</p>
 						<a href="comprar?idProducto=${producto.idProducto}">Comprar 1
 							unidad</a>
+						<c:if test="${sessionScope.usuario.rol == 'admin'}">
+						<a class="button btn btn-danger"  href="borrar?idProducto=${producto.idProducto}" style="color: white">Eliminar</a>
+					</c:if>
 					</div>
 				</div>
 			</div>

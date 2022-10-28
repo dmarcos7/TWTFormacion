@@ -3,12 +3,13 @@ package com.curso.mercado.servicios;
 import java.util.List;
 
 import com.curso.mercado.entidades.Producto;
+import com.curso.mercado.persistencia.ProductoDataBaseJPA;
 import com.curso.mercado.persistencia.ProductoInMemoryDAO;
 import com.curso.mercado.servicios.excepciones.VentasException;
 
 public class VentasService {
 	
-	private ProductoInMemoryDAO productoDAO = new ProductoInMemoryDAO();
+	private ProductoDataBaseJPA productoDAO = new ProductoDataBaseJPA();
 	
 	
 	// todos los metodos para gestionar un proceso de venta
@@ -30,6 +31,7 @@ public class VentasService {
 		//resto la cantidad al stock actual
 		
 		pAVender.setStock(pAVender.getStock() - cantidad);
+		productoDAO.update(pAVender);
 		
 	}
 

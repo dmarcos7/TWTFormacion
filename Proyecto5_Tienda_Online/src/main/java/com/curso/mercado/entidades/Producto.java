@@ -14,6 +14,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name="PRODUCTOS")
 public class Producto implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PRODUCTO_SEQ")
 	@SequenceGenerator(sequenceName = "PRODUCTO_SEQ", name = "PRODUCTO_SEQ", allocationSize=1)

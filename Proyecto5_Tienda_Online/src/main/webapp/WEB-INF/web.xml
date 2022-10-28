@@ -30,6 +30,12 @@
   	<servlet-class>com.curso.mercado.web.VentasServlet</servlet-class>
   	<load-on-startup>3</load-on-startup>
   </servlet>
+  <servlet>
+  	<servlet-name>BorrarServlet</servlet-name>
+  	<display-name>BorrarServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.curso.mercado.web.BorrarServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>AltaProductoServlet</servlet-name>
   	<url-pattern>/alta</url-pattern>
@@ -49,6 +55,10 @@
   <servlet-mapping>
   	<servlet-name>VentasServlet</servlet-name>
   	<url-pattern>/comprar</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>BorrarServlet</servlet-name>
+  	<url-pattern>/borrar</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
   	<welcome-file>login.jsp</welcome-file>

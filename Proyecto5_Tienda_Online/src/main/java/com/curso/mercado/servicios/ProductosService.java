@@ -2,10 +2,8 @@ package com.curso.mercado.servicios;
 
 import java.util.List;
 
-import com.curso.db.PoolConexiones;
 import com.curso.mercado.entidades.Producto;
 import com.curso.mercado.persistencia.GenericDAO;
-import com.curso.mercado.persistencia.ProductoDataBaseDAO;
 import com.curso.mercado.persistencia.ProductoDataBaseJPA;
 
 public class ProductosService {
@@ -29,6 +27,15 @@ public class ProductosService {
 	}
 	
 	public List<Producto>  dameTodosLosProductos() {
+		return dao.getAll();
+	}
+	
+	public List<Producto> borrarProducto(int id){
+		Producto producto = dao.getByID(id);
+		if(producto == null) {
+			throw new RuntimeException("Error. No existe el producto que desea eliminar");
+		}
+		dao.delete(id);
 		return dao.getAll();
 	}
 
