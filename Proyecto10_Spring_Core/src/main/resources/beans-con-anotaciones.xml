@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	<!-- Trabaja con anotacines -->
+	<context:annotation-config></context:annotation-config>
+	<!-- busque todas las clases que tienen anotaciones desde el paquete -->
+	<context:component-scan
+		base-package="com.curso.springcore.pedidos"></context:component-scan>
+	<!--  <bean id="jefe1" class="com.curso.springcore.equipo.JefeEquipo"></bean>
+	<bean id="prog1" class="com.curso.springcore.equipo.Programador">
+		<qualifier value="main"></qualifier>
+	</bean>
+	<bean id="prog2" class="com.curso.springcore.equipo.Programador">
+		<qualifier value="progJava"></qualifier>
+		<property name="tarea" value="Programar en Java"></property>
+	</bean>-->
+	
+</beans>
