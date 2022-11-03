@@ -16,6 +16,7 @@
 
 	<li>${pedido.id} - ${pedido.descripcion}</li>
 	<a href="/pedido?idPedido=${pedido.id}">Ver Pedido</a>
+	<a href="/pedido/borrar?idPedido=${pedido.id}">Eliminar</a>
 </c:forEach>
 </ul>
 </body>

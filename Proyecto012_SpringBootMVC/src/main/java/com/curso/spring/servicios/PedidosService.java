@@ -11,4 +11,5 @@ public interface PedidosService {
 	Collection<Pedido> getPedidos(String user);
 	Pedido getPedido(Integer id);
 	void altaPedido(Pedido p);
+	void borrarPedido(Integer id);
 }

@@ -56,7 +56,6 @@ public class PedidosController {
 		if(id.isEmpty()) {
 			return "redirect:/pedidos";
 		}
-		System.out.println(idCliente);
 		Pedido p = pedidoService.getPedido(idCliente);
 		model.addAttribute("pedido", p);
 		return "detalle-pedido";
@@ -85,6 +84,16 @@ public class PedidosController {
 		
 		model.addAttribute("pedidos", pedido);
 		
+		return "redirect:/pedidos";
+	}
+	
+	@GetMapping("/pedido/borrar")
+	public String borrarPedido(Model model, @RequestParam("idPedido")Optional<Integer> id) {
+		Integer pedidoId = id.orElse(null);
+		if(pedidoId== null) {
+			return "redirect:/pedidos";
+		}
+		pedidoService.borrarPedido(pedidoId);
 		return "redirect:/pedidos";
 	}
 
