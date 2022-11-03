@@ -9,13 +9,13 @@
 <title>Pedidos</title>
 </head>
 <body>
-<h2>Lista de Pedidos</h2>
+<h2>Lista de Pedidos del cliente ${usuario.nombre}!!!</h2>
 
 <ul>
 <c:forEach items="${listaPedidos}" var="pedido">
 
 	<li>${pedido.id} - ${pedido.descripcion}</li>
-
+	<a href="/pedido?idPedido=${pedido.id}">Ver Pedido</a>
 </c:forEach>
 </ul>
 </body>

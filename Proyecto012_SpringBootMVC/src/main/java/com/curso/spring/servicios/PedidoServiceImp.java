@@ -1,6 +1,7 @@
 package com.curso.spring.servicios;
 
 import java.util.Collection;
+import java.util.Date;
 
 import javax.annotation.PostConstruct;
 
@@ -12,6 +13,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import com.curso.spring.entidades.Pedido;
+import com.curso.spring.repositorios.PedidoJPARepository;
 import com.curso.spring.repositorios.PedidoRepository;
 
 @Service
@@ -28,6 +30,9 @@ public class PedidoServiceImp implements PedidosService {
 	@Qualifier("pedidoRepoJPA")
 	private PedidoRepository repo2;
 	
+	@Autowired
+	private PedidoJPARepository repoJPA;
+	
 	public PedidoServiceImp() {
 		log.info("......... Instanciando PedidoServiceImp ");
 	}
@@ -36,7 +41,8 @@ public class PedidoServiceImp implements PedidosService {
 	public void generarPedido(Pedido p) {
 		// TODO Auto-generated method stub
 		log.info("gestiono un pedido");
-		repo.add(p);
+		//repo.add(p);
+		repoJPA.saveAndFlush(p);
 	}
 	
 	@PostConstruct
@@ -47,11 +53,26 @@ public class PedidoServiceImp implements PedidosService {
 	@Override
 	public Collection<Pedido> getPedidos(String user) {
 		if(user!=null) {
-			return repo.getPedidosByUser(user);
+			return repoJPA.findAll();
 		}else {
-			return repo.getAll();
+			
+			Pedido pFiltro = new Pedido();
+			pFiltro.setUsuario(user);
+			return repoJPA.getAllByUser(user);
 		}
 		
 	}
+
+	@Override
+	public Pedido getPedido(Integer id) {
+		return repoJPA.getReferenceById(id);
+	}
+
+	@Override
+	public void altaPedido(Pedido p) {
+		
+		repoJPA.saveAndFlush(p);
+	}
+
 
 }

@@ -41,7 +41,7 @@ public class PedidoRepositoryImp implements PedidoRepository {
 	public Collection<Pedido> getPedidosByUser(String user) {
 		Collection<Pedido> lista = new ArrayList<>();
 		for(Pedido p: pedidos.values()) {
-			if(p.getUsuario().equals(user)) {
+			if(p.getUsuario().equalsIgnoreCase(user)) {
 				lista.add(p);
 			}
 		}
@@ -52,6 +52,21 @@ public class PedidoRepositoryImp implements PedidoRepository {
 	public Collection<Pedido> getAll() {
 		
 		return pedidos.values();
+	}
+
+	@Override
+	public Pedido getById(Integer id) {
+	
+		return pedidos.get(id);
+	}
+
+	@Override
+	public void addPedido(Pedido p) {
+		Integer id = pedidos.keySet().size()+1;
+		p.setId(id);
+		p.setEntregado(false);
+		p.setFechaPedido(new Date());
+		pedidos.put(id, p);
 	}
 
 }

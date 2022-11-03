@@ -9,4 +9,6 @@ public interface PedidosService {
 	
 	void generarPedido(Pedido p);
 	Collection<Pedido> getPedidos(String user);
+	Pedido getPedido(Integer id);
+	void altaPedido(Pedido p);
 }
