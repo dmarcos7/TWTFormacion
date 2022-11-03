@@ -58,6 +58,7 @@ public class PedidoServiceImp implements PedidosService {
 			
 			Pedido pFiltro = new Pedido();
 			pFiltro.setUsuario(user);
+			log.info("el usuario es:" +user);
 			return repoJPA.getAllByUser(user);
 		}
 		

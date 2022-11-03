@@ -32,7 +32,7 @@ public class PedidosController {
 	public String pedidos(Model model) {
 		//pedir la lista de pedidos del usuario que este de sesion
 		Usuario usuario = (Usuario) model.getAttribute("usuario");
-		Collection<Pedido> pedidos = pedidoService.getPedidos(null);
+		Collection<Pedido> pedidos = pedidoService.getPedidos(usuario.getNombre());
 		model.addAttribute("listaPedidos", pedidos);
 		return "pedidos";
 	}
@@ -79,13 +79,13 @@ public class PedidosController {
 		}
 		Usuario u = (Usuario) model.getAttribute("usuario");
 		pedido.setUsuario(u.getNombre());
-		pedidoService.altaPedido(pedido);
 		pedido.setFechaPedido(new Date());
-		Collection<Pedido> pedidos = pedidoService.getPedidos(u.getNombre());
+		pedidoService.altaPedido(pedido);
 		
-		model.addAttribute("pedidos", pedidos);
 		
-		return "pedidos";
+		model.addAttribute("pedidos", pedido);
+		
+		return "redirect:/pedidos";
 	}
 
 }
