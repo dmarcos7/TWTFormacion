@@ -56,7 +56,7 @@ public class PedidosController {
 		if(id.isEmpty()) {
 			return "redirect:/pedidos";
 		}
-		Pedido p = pedidoService.getPedido(idCliente);
+		Optional<Pedido> p = pedidoService.getPedido(idCliente);
 		model.addAttribute("pedido", p);
 		return "detalle-pedido";
 	}

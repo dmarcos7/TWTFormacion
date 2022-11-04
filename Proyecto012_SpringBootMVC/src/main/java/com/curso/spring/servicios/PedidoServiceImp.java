@@ -1,7 +1,7 @@
 package com.curso.spring.servicios;
 
 import java.util.Collection;
-import java.util.Date;
+import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 //import javax.transaction.Transactional;
@@ -70,14 +70,14 @@ public class PedidoServiceImp implements PedidosService {
 	}
 
 	@Override
-	public Pedido getPedido(Integer id) {
-		return repoJPA.getReferenceById(id);
+	public Optional<Pedido> getPedido(Integer id) {
+		return repoJPA.findById(id);
 	}
 
 	@Override
-	public void altaPedido(Pedido p) {
+	public Pedido altaPedido(Pedido p) {
 		
-		repoJPA.saveAndFlush(p);
+		return repoJPA.save(p);
 	}
 
 	@Override
