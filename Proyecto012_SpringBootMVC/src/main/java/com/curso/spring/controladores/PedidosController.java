@@ -96,5 +96,10 @@ public class PedidosController {
 		pedidoService.borrarPedido(pedidoId);
 		return "redirect:/pedidos";
 	}
+	
+//	@GetMapping("/pedir")
+//	public String hacerPedido(Model model @RequestParam("descripcion") descripcion, @RequestParam("cantidad")) {
+//		return "redirect:/pedidos"
+//	}
 
 }

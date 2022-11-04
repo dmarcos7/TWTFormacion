@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Date;
 
 import javax.annotation.PostConstruct;
+//import javax.transaction.Transactional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.curso.spring.entidades.Pedido;
 import com.curso.spring.repositorios.PedidoJPARepository;
@@ -18,6 +21,7 @@ import com.curso.spring.repositorios.PedidoRepository;
 
 @Service
 @Scope(value="singleton")
+@Transactional(propagation = Propagation.REQUIRED)
 public class PedidoServiceImp implements PedidosService {
 
 	private static Logger log = LoggerFactory.getLogger(PedidoServiceImp.class);
@@ -51,8 +55,9 @@ public class PedidoServiceImp implements PedidosService {
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public Collection<Pedido> getPedidos(String user) {
-		if(user!=null) {
+		if(user==null) {
 			return repoJPA.findAll();
 		}else {
 			
