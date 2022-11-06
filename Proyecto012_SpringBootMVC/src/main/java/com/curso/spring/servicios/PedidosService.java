@@ -13,4 +13,5 @@ public interface PedidosService {
 	Optional<Pedido> getPedido(Integer id);
 	Pedido altaPedido(Pedido p);
 	void borrarPedido(Integer id);
+	Pedido modificarPedido(Pedido p);
 }

@@ -61,7 +61,10 @@ public class PedidosRestfulController {
 	//UPDATE
 	
 	@PutMapping("/ws/pedidos/modificar/{id}")
-	public void modificar(@PathVariable("id") Integer id, @RequestBody Pedido p) {
+	public Pedido modificar(@PathVariable("id") Integer id, @RequestBody Pedido p) {
+		p.setFechaPedido(new Date());
+		p.setId(id);
+		return pedidoService.modificarPedido(p);
 		
 	}
 
