@@ -16,13 +16,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.curso.spring.entidades.Pedido;
-import com.curso.spring.entidades.Usuario;
-import com.curso.spring.servicios.PedidoServiceImp;
 import com.curso.spring.servicios.PedidosService;
 
 @RestController
 public class PedidosRestfulController {
-	private static Logger log = LoggerFactory.getLogger(PedidoServiceImp.class);
+	private static Logger log = LoggerFactory.getLogger(PedidosRestfulController.class);
 	
 	@Autowired
 	private PedidosService pedidoService;
@@ -64,6 +62,7 @@ public class PedidosRestfulController {
 	public Pedido modificar(@PathVariable("id") Integer id, @RequestBody Pedido p) {
 		p.setFechaPedido(new Date());
 		p.setId(id);
+		log.info(p.toString());
 		return pedidoService.modificarPedido(p);
 		
 	}
