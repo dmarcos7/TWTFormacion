@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Optional;
 
 import com.curso.spring.entidades.Pedido;
+import com.curso.spring.excepciones.PedidosException;
 
 public interface PedidosService {
 
@@ -12,6 +13,6 @@ public interface PedidosService {
 	Collection<Pedido> getPedidos(String user);
 	Optional<Pedido> getPedido(Integer id);
 	Pedido altaPedido(Pedido p);
-	void borrarPedido(Integer id);
+	void borrarPedido(Integer id) throws PedidosException;
 	Pedido modificarPedido(Pedido p);
 }

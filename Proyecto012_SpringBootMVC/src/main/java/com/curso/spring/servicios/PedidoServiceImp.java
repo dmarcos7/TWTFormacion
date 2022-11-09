@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.curso.spring.entidades.Pedido;
+import com.curso.spring.excepciones.PedidosException;
 import com.curso.spring.repositorios.PedidoJPARepository;
 import com.curso.spring.repositorios.PedidoRepository;
 
@@ -81,7 +82,10 @@ public class PedidoServiceImp implements PedidosService {
 	}
 
 	@Override
-	public void borrarPedido(Integer id) {
+	public void borrarPedido(Integer id) throws PedidosException {
+		if(!repoJPA.existsById(id)){
+			throw new PedidosException("El pedido no se pudo borrar, no existe el pedido con ese id");
+		}
 		repoJPA.deleteById(id);
 		
 	}
